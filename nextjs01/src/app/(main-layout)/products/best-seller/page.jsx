@@ -1,7 +1,9 @@
+import Title from "./components/Title";
+
 export default function BestSellerPage() {
   return (
     <div>
-      <h1>Best Seller</h1>
+      <Title />
     </div>
   );
 }
