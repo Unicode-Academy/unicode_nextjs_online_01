@@ -1,5 +1,6 @@
 import SearchForm from "./SearchForm";
 import TodoAdd from "./TodoAdd";
+import TodoAdd2 from "./TodoAdd2";
 import TodoList from "./TodoList";
 
 export default async function TodosPage({ searchParams }) {
@@ -11,7 +12,8 @@ export default async function TodosPage({ searchParams }) {
       <SearchForm />
       <TodoList searchParams={search} />
       <hr />
-      <TodoAdd />
+      {/* <TodoAdd /> */}
+      <TodoAdd2 />
     </div>
   );
 }

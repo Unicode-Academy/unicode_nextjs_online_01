@@ -1,7 +1,12 @@
 import { notFound } from "next/navigation";
 
-const getTodo = async (id) => {
-  const response = await fetch(`${process.env.SERVER_API}/todos/${id}`);
+export const getTodo = async (id) => {
+  const response = await fetch(`${process.env.SERVER_API}/todos/${id}`, {
+    cache: "force-cache",
+    next: {
+      tags: [`todo-detail`],
+    },
+  });
   if (!response.ok) {
     throw new Error("Fetch to failed");
   }

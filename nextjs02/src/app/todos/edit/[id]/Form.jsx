@@ -1,9 +1,9 @@
 "use client";
 
+import { clearCacheByPath, clearCacheByTag } from "@/app/utils/cache";
 import { useRouter } from "next/navigation";
-import { clearCacheByPath, clearCacheByTag } from "../utils/cache";
 
-export default function TodoAdd() {
+export default function Form({ todo }) {
   const router = useRouter();
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,24 +13,30 @@ export default function TodoAdd() {
       return alert("Vui lòng nhập");
     }
     const body = { title };
-    const response = await fetch(`${process.env.SERVER_API}/todos`, {
-      method: "POST",
+    const response = await fetch(`${process.env.SERVER_API}/todos/${todo.id}`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(body),
     });
     if (response.ok) {
-      router.refresh();
-      // clearCacheByPath("/todos"); //Xóa tất cả cache của path /todos
+      //   router.refresh();
+      clearCacheByPath(`/todos/${todo.id}`);
+      //   clearCacheByTag(`todo-detail`);
       clearCacheByTag("todo-list");
-      e.target.reset();
+      alert("Cập nhật thành công");
     }
   };
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="title" placeholder="Title..." />
-      <button type="submit">Add</button>
+      <input
+        type="text"
+        name="title"
+        placeholder="Title..."
+        defaultValue={todo.title}
+      />
+      <button type="submit">Update</button>
     </form>
   );
 }
