@@ -14,13 +14,18 @@ export const getTodoList = async (q) => {
       },
     }
   );
+  if (!response.ok) {
+    throw new Error("Fetch to failed /todos");
+  }
   return response.json();
 };
 export default async function TodoList({ searchParams }) {
   const q = searchParams.q;
   //Gọi api
   const todoList = await getTodoList(q);
-
+  if (!todoList) {
+    return <h3>Error</h3>;
+  }
   return (
     <>
       {todoList.map((todo) => (

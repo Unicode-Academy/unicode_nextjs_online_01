@@ -1,4 +1,6 @@
-import React from "react";
+export const metadata = {
+  title: "Giới thiệu",
+};
 
 export default function AboutPage() {
   return (
