@@ -2,7 +2,13 @@ import { getIronSessionData } from "@/app/utils/session-server";
 import Image from "next/image";
 
 export default async function ProfilePage() {
-  const session = await getIronSessionData();
+  const session = await getIronSessionData<{
+    user: {
+      name: string;
+      email: string;
+      avatar: string;
+    };
+  }>();
   const user = session.user;
   return (
     <div>

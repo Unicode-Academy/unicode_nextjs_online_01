@@ -5,7 +5,7 @@ import { SessionData, sessionOptions } from "@/app/configs/session";
 
 export async function GET() {
   const cookieStore = await cookies();
-  const session = await getIronSession<SessionData>(
+  const session = await getIronSession<SessionData<{ [key: string]: string }>>(
     cookieStore,
     sessionOptions
   );
@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(request: NextRequest) {
   const cookieStore = await cookies();
-  const session = await getIronSession<SessionData>(
+  const session = await getIronSession<SessionData<{ [key: string]: string }>>(
     cookieStore,
     sessionOptions
   );
