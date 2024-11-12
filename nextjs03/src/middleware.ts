@@ -1,34 +1,51 @@
-// import { NextRequest, NextResponse } from "next/server";
+import { NextResponse, type NextRequest } from "next/server";
+import { getIronSessionData } from "./app/utils/session-server";
 
-export const getProfile = async (token: string) => {
-  const response = await fetch(`${process.env.AUTH_SERVER_API}/auth/profile`, {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
+const protectedRoutes = ["/profile", "/admin", "/orders"];
+const isProtectedRoute = (path: string) => {
+  return protectedRoutes.some((item: string) => {
+    return path.startsWith(item);
   });
-  if (!response.ok) {
-    return false;
+};
+export async function middleware(request: NextRequest) {
+  const { nextUrl, url } = request;
+  const session = await getIronSessionData<{
+    user: {
+      role: string;
+    };
+  }>();
+  const user = session?.user;
+
+  if (isProtectedRoute(nextUrl.pathname)) {
+    if (!user || !request.cookies.get("token")?.value) {
+      return NextResponse.redirect(new URL("/auth/login", url));
+    }
+    //Nếu role là customer và pathname là /admin --> Chuyển về trang chủ
+    if (user.role === "customer" && nextUrl.pathname.startsWith("/admin")) {
+      return NextResponse.redirect(new URL("/", url));
+    }
+    //Nếu role là admin và pathname là các trường hợp còn lại trong protectedRoutes --> Đi tiếp (Không làm gì cả)
   }
-  const data = await response.json();
-  return data;
-};
-export const middleware = async () => {
-  // const pathname = request.nextUrl.pathname;
-  // if (pathname.startsWith("/profile")) {
-  //   const tokenFromCookie = request.cookies.get("token")?.value;
-  //   if (!tokenFromCookie) {
-  //     return NextResponse.redirect(new URL("/auth/login", request.url));
-  //   }
-  //   const token = JSON.parse(tokenFromCookie);
-  //   //Call API lấy thông tin profile
-  //   const user = await getProfile(token.access_token);
-  //   if (!user) {
-  //     return NextResponse.redirect(new URL("/auth/login", request.url));
-  //   }
-  // }
-};
+
+  if (user && !isProtectedRoute(nextUrl.pathname)) {
+    if (user.role === "admin") {
+      return NextResponse.redirect(new URL("/admin", url));
+    }
+    return NextResponse.redirect(new URL("/", url));
+  }
+
+  return NextResponse.next();
+}
 
 export const config = {
-  matcher:
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)",
+  matcher: [
+    "/profile/:path*",
+    "/admin/:path*",
+    "/orders/:path*",
+    "/auth/:path*",
+  ],
 };
+
+//Buổi sau:
+// - Refresh Token
+// - Build Http Client để call API --> Tự động Refresh Token khi hết hạn --> Cập nhật session (Cả client và server)

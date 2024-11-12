@@ -25,3 +25,9 @@ Vấn đề: Trên 1 trang có nhiều request cùng lúc --> Cấp lại refres
 - Request 2 --> failed --> Refresh token --> Gọi lại request 2
 - Request 3 --> failed --> Refresh token --> Gọi lại request 3
 - Request 4 --> failed --> Refresh token --> Gọi lại request 4
+
+Đăng xuất
+
+--> Gọi api /logout --> Gửi kèm token lên back-end
+--> Xóa session
+--> Xóa token ở cookie

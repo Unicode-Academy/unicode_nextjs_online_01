@@ -1,17 +1,20 @@
 "use client";
+import useSWR from "swr";
+import { createContext, useEffect } from "react";
+import { getToken } from "./utils";
+import { usePathname } from "next/navigation";
 
-import { createContext } from "react";
-export type Token = { access_token: string; refresh_token: string };
-
-export const AppContext = createContext<{ token: Token } | null>(null);
-export default function Provider({
-  children,
-  token,
-}: {
-  children: React.ReactNode;
-  token: Token;
-}) {
+export const AppContext = createContext<{ token: string } | null>(null);
+export default function Provider({ children }: { children: React.ReactNode }) {
+  const { data: token, mutate } = useSWR(`/auth/token`, getToken);
+  const accessToken = token?.data?.access_token ?? "";
+  const pathname = usePathname();
+  useEffect(() => {
+    mutate();
+  }, [pathname, mutate]);
   return (
-    <AppContext.Provider value={{ token }}>{children}</AppContext.Provider>
+    <AppContext.Provider value={{ token: accessToken }}>
+      {children}
+    </AppContext.Provider>
   );
 }

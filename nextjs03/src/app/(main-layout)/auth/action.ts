@@ -1,4 +1,5 @@
 "use server";
+import { getProfile } from "@/app/utils/utils";
 import { cookies } from "next/headers";
 import { z } from "zod";
 type FormState = {
@@ -76,9 +77,13 @@ export const handleLogin = async (
       message: "Email hoặc mật khẩu không chính xác",
     };
   }
-  const data = await response.text();
+  const data = await response.json();
+
+  //Lấy thông tin profile
+  const user = await getProfile(data.access_token);
+
   //Lưu thông tin token vào cookie
-  (await cookies()).set("token", data, {
+  (await cookies()).set("token", JSON.stringify(data), {
     httpOnly: true,
     path: "/",
     secure: true,
@@ -86,6 +91,7 @@ export const handleLogin = async (
   });
   return {
     success: true,
+    data: user,
     message: "Đăng nhập thành công",
   };
 };
