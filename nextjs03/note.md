@@ -31,3 +31,5 @@ Vấn đề: Trên 1 trang có nhiều request cùng lúc --> Cấp lại refres
 --> Gọi api /logout --> Gửi kèm token lên back-end
 --> Xóa session
 --> Xóa token ở cookie
+
+## Fetch Wrapper API

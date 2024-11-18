@@ -9,7 +9,8 @@ export default async function ProfilePage() {
       avatar: string;
     };
   }>();
-  const user = session.user;
+  const { user } = session;
+
   return (
     <div>
       <h1>Thông tin cá nhân</h1>

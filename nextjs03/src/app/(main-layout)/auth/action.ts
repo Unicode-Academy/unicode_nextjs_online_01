@@ -79,19 +79,24 @@ export const handleLogin = async (
   }
   const data = await response.json();
 
-  //Lấy thông tin profile
-  const user = await getProfile(data.access_token);
-
   //Lưu thông tin token vào cookie
-  (await cookies()).set("token", JSON.stringify(data), {
+  const cookieStore = await cookies();
+
+  cookieStore.set("token", JSON.stringify(data), {
     httpOnly: true,
     path: "/",
     secure: true,
     maxAge: 86400,
   });
+  //Lấy thông tin profile
+  const user = await getProfile(data.access_token);
+
   return {
     success: true,
-    data: user,
+    data: {
+      user,
+      accessToken: data.access_token,
+    },
     message: "Đăng nhập thành công",
   };
 };

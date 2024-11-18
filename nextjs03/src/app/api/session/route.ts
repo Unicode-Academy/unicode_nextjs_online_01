@@ -9,6 +9,7 @@ export async function GET() {
     cookieStore,
     sessionOptions
   );
+
   return NextResponse.json(session.data);
 }
 
@@ -21,6 +22,7 @@ export async function POST(request: NextRequest) {
   const body = await request.json();
   if (body.type === "update") {
     session.data = {
+      ...session.data,
       [body.key]: body.data,
     };
   }

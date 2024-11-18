@@ -7,7 +7,10 @@ import { setSession } from "@/app/utils/session";
 const initialState = {
   success: false,
   message: "",
-  data: {},
+  data: {
+    user: {},
+    accessToken: "",
+  },
 };
 export default function LoginForm() {
   const [state, formAction] = useActionState(handleLogin, initialState);
@@ -15,8 +18,9 @@ export default function LoginForm() {
   useEffect(() => {
     const redirect = async () => {
       if (state.success) {
-        await setSession("user", state.data);
-        if (state.data.role === "admin") {
+        await setSession("user", state.data?.user);
+        await setSession("token", state.data?.accessToken);
+        if (state.data?.user.role === "admin") {
           return router.push("/admin");
         }
         router.push("/");

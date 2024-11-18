@@ -1,24 +1,24 @@
 "use client";
-import { use } from "react";
 import { deleteSession } from "@/app/utils/session";
-import { getProfile, removeToken } from "@/app/utils/utils";
 import Link from "next/link";
 import useSWR from "swr";
-import { AppContext } from "@/app/utils/Provider";
-import { useRouter } from "next/navigation";
+import { authClient } from "@/app/utils/client";
+import { removeToken } from "@/app/utils/utils";
+import { useEffect } from "react";
 export default function Menu() {
-  const router = useRouter();
-  const context = use(AppContext);
-  const { data: user } = useSWR(context?.token && `/auth/profile`, () =>
-    getProfile(context?.token)
+  // const router = useRouter();
+  const { data: user, mutate } = useSWR(`/auth/profile`, () =>
+    authClient.get(`/auth/profile`)
   );
   const handleLogout = async () => {
     //Gọi API logout để thêm token vào blacklist phía server
     await deleteSession("user");
     await removeToken(); //Xóa token trong cookie
-    router.push("/auth/login");
-    // window.location.href = "/auth/login";
+    window.location.href = "/auth/login";
   };
+  useEffect(() => {
+    mutate();
+  }, [user, mutate]);
   return (
     <div>
       <ul className="nav nav-pills flex-column">
@@ -39,7 +39,7 @@ export default function Menu() {
       <div>
         {user ? (
           <>
-            <p>Chào bạn: {user.name}</p>
+            <p>Chào bạn: {(user as { name: string }).name}</p>
             <button onClick={handleLogout}>Đăng xuất</button>
           </>
         ) : (

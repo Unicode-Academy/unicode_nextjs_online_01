@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 export const GET = async () => {
   const cookieStore = await cookies();
   const tokenFromCookie = cookieStore.get("token")?.value;
@@ -22,7 +22,22 @@ export const GET = async () => {
   );
 };
 
-export const POST = async () => {
+export const POST = async (request: NextRequest) => {
+  const { token } = await request.json();
+  const cookieStore = await cookies();
+  cookieStore.set("token", JSON.stringify(token), {
+    httpOnly: true,
+    path: "/",
+    secure: true,
+    maxAge: 86400,
+  });
+  return NextResponse.json({
+    success: true,
+    message: "Save Token Success",
+  });
+};
+
+export const DELETE = async () => {
   const cookieStore = await cookies();
   cookieStore.delete("token");
   return NextResponse.json({
