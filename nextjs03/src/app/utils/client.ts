@@ -150,3 +150,20 @@ authClient.response(async function (config: Response) {
 
   return config;
 });
+
+export const adminClient = HttpClient.create({
+  baseUrl: process.env.API_SERVER as string,
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
+
+adminClient.request(async function (config: RequestInit) {
+  //Tùy chỉnh request
+  const token = await getToken();
+  if (token.success) {
+    config.headers = config.headers as { [key: string]: string };
+    config.headers.Authorization = `Bearer ${token.data.access_token}`;
+  }
+  return config;
+});

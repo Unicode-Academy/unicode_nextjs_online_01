@@ -33,3 +33,30 @@ Vấn đề: Trên 1 trang có nhiều request cùng lúc --> Cấp lại refres
 --> Xóa token ở cookie
 
 ## Fetch Wrapper API
+
+## Đăng nhập thông qua mạng xã hội
+
+1. Bản chất
+
+- Sử dụng thông tin tài khoản mạng xã hội của user
+- Lưu vào thông tin đó vào Database của ứng dụng (online.unicode.vn) --> Tự động đăng nhập
+- OAuth 2.0
+
+2. Luồng chạy
+
+2.1. Bước 1: Tạo redirect link
+
+- Nhiệm vụ: Back-End làm
+- Font-End: Call API tới back-end --> Back-end sẽ trả về Redirect Link (Hoặc gọi trực tiếp link api --> back-end sẽ tự chuyển hướng)
+- User đăng nhập tk mạng xã hội --> Chuyển sang bước 2
+
+  2.2. Bước 2: Xử lý để lấy thông tin user
+
+- Bước 1 sau khi user đăng nhập xong --> Tự động chuyển hướng về callback url (Ứng dụng của mình)
+- Trong callback (Back-End) sẽ tự động xử lý lấy thông tin user mạng xã hội --> insert database --> Tạo access token và refresh token (Của ứng dụng chứ không phải của mạng xã hội)
+- Chuyển hướng tới URL của front-end --> Để front-end call và lấy về token
+- Lưu vào cookie / localStorage --> Làm mới lại trang
+
+  2.3. Đăng xuất
+
+Xóa token, session, blacklist ==> Không liên quan đến mạng xã hội (Xử lý phía ứng dụng)
