@@ -1,0 +1,23 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HomePage renders homepage unchanged 1`] = `
+<div>
+  <div>
+    <h1>
+      HomePage
+    </h1>
+    <h2>
+      Chào mừng bạn đến với nextjs
+    </h2>
+    <h3>
+      Hello NextJS
+    </h3>
+    <button>
+      Click me
+    </button>
+    <h4>
+      Hoàng An
+    </h4>
+  </div>
+</div>
+`;
