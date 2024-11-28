@@ -1,0 +1,53 @@
+@import "../assets/scss/mixin";
+.posts {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  .title {
+    margin-bottom: 15px;
+    border-bottom: 1px solid red;
+  }
+  .post-list {
+    display: flex;
+    flex-wrap: wrap;
+    .item {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin-bottom: 15px;
+      flex-basis: calc(100% / 4);
+      &:hover {
+        background: grey;
+      }
+    }
+  }
+}
+@include extra-small-screen {
+  .posts {
+    .post-list {
+      .item {
+        flex-basis: 100% !important;
+      }
+    }
+  }
+}
+
+@include small-screen {
+  .posts {
+    .post-list {
+      .item {
+        flex-basis: calc(100% / 2);
+      }
+    }
+  }
+}
+
+@include medium-screen {
+  .posts {
+    .post-list {
+      .item {
+        flex-basis: calc(100% / 3);
+      }
+    }
+  }
+}

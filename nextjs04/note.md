@@ -26,3 +26,22 @@ Front-End
 - Props
 - Fire Event
 - Snapshot
+
+## Deploy
+
+- NextJS chạy trên nền của Nodejs
+- Thông qua phần mềm giám sát: pm2
+
+Yêu cầu môi trường
+
+1. Cài đặt NodeJS
+
+=> Nên sử dụng thông qua nvm
+
+2. Cài đặt pm2
+
+3. WebServer
+
+- Nginx
+- Apache
+- Candy

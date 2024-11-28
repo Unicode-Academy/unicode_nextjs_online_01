@@ -1,6 +1,6 @@
 import TodoList from "./_components/TodoList";
 
-export default async function TodoPage() {
+export default function TodoPage() {
   return (
     <div>
       <h1>TodoList App</h1>
