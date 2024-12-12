@@ -65,7 +65,7 @@
 
 @layer base {
   * {
-    @apply border-border;
+    /* @apply border-border; */
   }
   html {
     font-size: 10px;
@@ -87,5 +87,9 @@
     &:hover {
       @apply text-secondaryColor;
     }
+  }
+  input {
+    box-shadow: none !important;
+    outline: 0 !important;
   }
 }

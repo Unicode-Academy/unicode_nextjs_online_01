@@ -1,6 +1,8 @@
 "use client";
 import { Search, ShoppingBag, UserRound } from "lucide-react";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
+
 export default function Account() {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
   const handleToggleSearch = () => {
@@ -21,7 +23,9 @@ export default function Account() {
       {searchOpen && (
         <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#ffffffe5] p-10">
           <div className="container flex justify-between">
-            <h3 className="text-[2.4rem] text-[gray]">Search by keyword</h3>
+            <h3 className="text-[2rem] text-[#45595b] font-[600]">
+              Search by keyword
+            </h3>
             <span
               className="cursor-pointer text-[3.2rem] font-bold"
               onClick={handleToggleSearch}
@@ -29,11 +33,19 @@ export default function Account() {
               &times;
             </span>
           </div>
-          <div className="container h-[80vh] flex items-center">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus
-            suscipit voluptates iusto animi provident consequuntur illum
-            accusantium quas aperiam est. Sapiente omnis praesentium ipsam
-            magnam ab ullam impedit soluta iste!
+          <div className="container h-[80vh] w-full flex items-center">
+            <form action="" className="w-[75%] mx-auto">
+              <div className="flex border rounded-[10px]">
+                <Input
+                  placeholder="Keyword"
+                  type="search"
+                  className="h-[58px] flex-grow border-[0] lg:text-[1.6rem]"
+                />
+                <button className="text-[#747d88] bg-[#e9ecef] border-[1px] border-solid border-[#ced4da] rounded-[10px] p-[1.6rem] rounded-tl-none rounded-bl-none">
+                  <Search />
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

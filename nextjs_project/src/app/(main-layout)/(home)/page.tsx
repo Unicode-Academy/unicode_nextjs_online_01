@@ -1,3 +1,13 @@
+import Feature from "./Feature/Feature";
+import Hero from "./Hero/Hero";
+import Products from "./Products/Products";
+
 export default function Home() {
-  return <h1>Home</h1>;
+  return (
+    <>
+      <Hero />
+      <Feature />
+      <Products />
+    </>
+  );
 }
