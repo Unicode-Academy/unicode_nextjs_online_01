@@ -21,7 +21,7 @@ export default function Account() {
         <UserRound size={30} className="text-primaryColor cursor-pointer" />
       </div>
       {searchOpen && (
-        <div className="fixed top-0 left-0 right-0 bottom-0 bg-[#ffffffe5] p-10">
+        <div className="fixed top-0 left-0 right-0 bottom-0 z-[1000] bg-[#ffffffe5] p-10">
           <div className="container flex justify-between">
             <h3 className="text-[2rem] text-[#45595b] font-[600]">
               Search by keyword
@@ -39,7 +39,7 @@ export default function Account() {
                 <Input
                   placeholder="Keyword"
                   type="search"
-                  className="h-[58px] flex-grow border-[0] lg:text-[1.6rem]"
+                  className="h-[58px] flex-grow border-[0] lg:text-[1.6rem] bg-white rounded-[10px]"
                 />
                 <button className="text-[#747d88] bg-[#e9ecef] border-[1px] border-solid border-[#ced4da] rounded-[10px] p-[1.6rem] rounded-tl-none rounded-bl-none">
                   <Search />

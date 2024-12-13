@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Vegetables",
+    "slug": "vegetables"
+  },
+  {
+    "id": 2,
+    "name": "Fruits",
+    "slug": "fruits"
+  },
+  {
+    "id": 3,
+    "name": "Bread",
+    "slug": "bread"
+  },
+  {
+    "id": 4,
+    "name": "Meat",
+    "slug": "meat"
+  }
+]

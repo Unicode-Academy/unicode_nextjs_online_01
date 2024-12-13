@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Sản phẩm 11",
+    "slug": "san-pham-1",
+    "price": "1.000đ / kg",
+    "category": "Chuyên mục 1",
+    "description": "Mo ta san pham 1",
+    "image": "https://cdnphoto.dantri.com.vn/q_iziMwmrDoBBDsj4hHbMB4D9EI=/zoom/774_516/2024/12/12/vnapotallekyniem80namngaytruyenthongtongcucchinhtriqdndvietnam7752460-crop-1733989733292.jpeg"
+  },
+  {
+    "id": 2,
+    "name": "Sản phẩm 21",
+    "slug": "san-pham-2",
+    "price": "1.000đ / kg",
+    "category": "Chuyên mục 2",
+    "description": "Mo ta san pham 2",
+    "image": "https://cdnphoto.dantri.com.vn/q_iziMwmrDoBBDsj4hHbMB4D9EI=/zoom/774_516/2024/12/12/vnapotallekyniem80namngaytruyenthongtongcucchinhtriqdndvietnam7752460-crop-1733989733292.jpeg"
+  },
+  {
+    "id": 3,
+    "name": "Sản phẩm 31",
+    "slug": "san-pham-3",
+    "price": "1.000đ / kg",
+    "category": "Chuyên mục 2",
+    "description": "Mo ta san pham 2",
+    "image": "https://cdnphoto.dantri.com.vn/q_iziMwmrDoBBDsj4hHbMB4D9EI=/zoom/774_516/2024/12/12/vnapotallekyniem80namngaytruyenthongtongcucchinhtriqdndvietnam7752460-crop-1733989733292.jpeg"
+  },
+  {
+    "id": 4,
+    "name": "Sản phẩm 41",
+    "slug": "san-pham-4",
+    "price": "1.000đ / kg",
+    "category": "Chuyên mục 4",
+    "description": "Mo ta san pham 4",
+    "image": "https://cdnphoto.dantri.com.vn/q_iziMwmrDoBBDsj4hHbMB4D9EI=/zoom/774_516/2024/12/12/vnapotallekyniem80namngaytruyenthongtongcucchinhtriqdndvietnam7752460-crop-1733989733292.jpeg"
+  }
+]
