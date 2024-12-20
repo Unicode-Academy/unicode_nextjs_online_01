@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "name": "Kích thước",
+    "slug": "kich-thuoc",
+    "values": [
+      {
+        "id": 1,
+        "value": "S",
+        "count": 10
+      },
+      {
+        "id": 2,
+        "value": "M",
+        "count": 15
+      },
+      {
+        "id": 3,
+        "value": "L",
+        "count": 15
+      },
+      {
+        "id": 4,
+        "value": "XL",
+        "count": 15
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Màu sắc",
+    "slug": "mau-sac",
+    "values": [
+      {
+        "id": 5,
+        "value": "Xanh",
+        "count": 10
+      },
+      {
+        "id": 6,
+        "value": "Đỏ",
+        "count": 15
+      },
+      {
+        "id": 7,
+        "value": "Tím",
+        "count": 15
+      },
+      {
+        "id": 8,
+        "value": "Vàng",
+        "count": 15
+      }
+    ]
+  }
+]

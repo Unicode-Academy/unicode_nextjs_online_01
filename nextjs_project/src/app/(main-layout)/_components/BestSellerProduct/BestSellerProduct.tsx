@@ -7,7 +7,17 @@ import Link from "next/link";
 import { getProductUrl } from "@/app/utils/url";
 import clsx from "clsx";
 // import { StarHalf } from "lucide-react";
-export default function BestSellerProduct({ product }) {
+export default function BestSellerProduct({
+  product,
+}: {
+  product: {
+    name: string;
+    slug: string;
+    image: string;
+    price: string;
+    star: number;
+  };
+}) {
   return (
     <Card className="bg-[#f4f6f8]">
       <CardContent>
@@ -30,11 +40,6 @@ export default function BestSellerProduct({ product }) {
             <div className="flex gap-1 mb-3">
               {Array.from({ length: 5 }).map((_, index) => {
                 const count = index + 1;
-                const half = product.star % 1 !== 0;
-
-                if (half) {
-                  console.log(count);
-                }
 
                 return (
                   <Star
