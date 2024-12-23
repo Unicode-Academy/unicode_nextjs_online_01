@@ -9,7 +9,7 @@ import {
   PaginationEllipsis,
 } from "@/components/ui/pagination";
 import { cn } from "@/lib/utils";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 type PaginationProps = {
   pageSize: number;
@@ -21,6 +21,7 @@ type PaginationProps = {
 };
 const activeClass = `bg-primaryColor text-white`;
 const size = 4;
+let isNavigatePage = false;
 export default function Pagination({
   pageSize,
   page,
@@ -32,6 +33,9 @@ export default function Pagination({
   const range = Array.from({ length: pageSize }).map((_, index) => index + 1);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const currentSearchParams = [...searchParams.entries()];
   const handleGoPage = (item: number) => {
     setCurrentPage(item);
     if (typeof onChange === "function") {
@@ -52,10 +56,32 @@ export default function Pagination({
     setCurrentPage(page);
   }, [page]);
   useEffect(() => {
-    if (isPushParams) {
-      router.push(`?page=${currentPage}`);
+    setCurrentPage(Number(searchParams.get("page")) || 1);
+  }, [searchParams.get("page")]);
+  useEffect(() => {
+    if (isPushParams && isNavigatePage) {
+      let isPage = false;
+      currentSearchParams.forEach((items, index) => {
+        if (items[0] === "page") {
+          currentSearchParams[index][1] = currentPage.toString();
+          isPage = true;
+        }
+      });
+      if (!isPage) {
+        currentSearchParams.push(["page", currentPage.toString()]);
+      }
+      const queryString = currentSearchParams
+        .map((items) => {
+          return items.join("=");
+        })
+        .join("&");
+
+      router.push(`${pathname}?${queryString}`);
     }
-  }, [currentPage, isPushParams, router]);
+    return () => {
+      isNavigatePage = true;
+    };
+  }, [currentPage, isPushParams, router, pathname]);
   return (
     <PaginationUI className="mt-10">
       <PaginationContent>

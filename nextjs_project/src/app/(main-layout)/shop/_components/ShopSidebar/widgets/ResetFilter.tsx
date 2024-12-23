@@ -1,11 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 export default function ResetFilter() {
   const pathname = usePathname();
-  const router = useRouter();
+  // const router = useRouter();
   const handleReset = () => {
-    router.push(pathname);
+    // router.push(pathname);
+    window.location.href = pathname;
   };
   return (
     <Button

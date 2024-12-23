@@ -1,9 +1,10 @@
 import { debounce } from "@/app/utils/utils";
 import { Slider } from "@/components/ui/slider";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 const MIN = 100000;
 const MAX = 1000000;
+let useFilterPrice = false; //Kiểm tra xem đã filter price hay chưa?
 export default function PriceFilter() {
   const [price, setPrice] = useState<number>(0);
   const [minPrice, setMinPrice] = useState<number>(0);
@@ -14,20 +15,9 @@ export default function PriceFilter() {
   const searchParams = useSearchParams();
   const priceFromUrl = searchParams.get("price");
   const currentSearchParams = [...searchParams.entries()];
-  const handleChangePrice = debounce(([value]: number[]) => {
+  const handleChangePrice = ([value]: number[]) => {
     setPrice(value);
-    currentSearchParams.forEach((items, index) => {
-      if (items[0] === "price") {
-        currentSearchParams[index][1] = value.toString();
-      }
-    });
-    const queryString = currentSearchParams
-      .map((items) => {
-        return items.join("=");
-      })
-      .join("&");
-    router.push(`${pathname}?${queryString}`);
-  });
+  };
 
   useEffect(() => {
     //call api --> lấy được min, max
@@ -40,6 +30,42 @@ export default function PriceFilter() {
     }
     setLoading(false);
   }, [priceFromUrl]);
+
+  const navigationPrice = useCallback(
+    debounce((value: number, currentSearchParams: string[][]) => {
+      let isPrice = false;
+      currentSearchParams.forEach((items, index) => {
+        if (items[0] === "price") {
+          currentSearchParams[index][1] = value.toString();
+          isPrice = true;
+        }
+        if (items[0] === "page") {
+          currentSearchParams[index][1] = "1";
+        }
+      });
+      if (!isPrice) {
+        currentSearchParams.push(["price", value.toString()]);
+      }
+      const queryString = currentSearchParams
+        .map((items) => {
+          return items.join("=");
+        })
+        .join("&");
+
+      router.push(`${pathname}?${queryString}`);
+    }),
+    []
+  );
+  useEffect(() => {
+    if (useFilterPrice) {
+      navigationPrice(price, currentSearchParams);
+    }
+    return () => {
+      if (price) {
+        useFilterPrice = true;
+      }
+    };
+  }, [price, navigationPrice]);
   if (isLoading) {
     return;
   }

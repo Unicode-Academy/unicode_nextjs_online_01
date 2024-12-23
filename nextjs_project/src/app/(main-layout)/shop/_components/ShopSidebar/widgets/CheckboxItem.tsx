@@ -40,7 +40,12 @@ export default function CheckboxItem({
     const queryString = Object.keys(attributeClone)
       .map((key) => {
         const values = attributeClone[key]
-          .map((item) => `${key}=${item}`)
+          .map((item) => {
+            if (key === "page") {
+              return `page=1`;
+            }
+            return `${key}=${item}`;
+          })
           .join("&");
         return values;
       })

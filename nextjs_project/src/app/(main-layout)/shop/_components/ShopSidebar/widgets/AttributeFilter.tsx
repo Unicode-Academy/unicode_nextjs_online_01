@@ -12,13 +12,17 @@ type Attribute = {
 };
 export default function AttributeFilter() {
   const [attributes, setAttributes] = useState<Attribute[]>([]);
-  const [attributeValueStatus, setAttributeValueStatus] = useState([]);
+  const [attributeValueStatus, setAttributeValueStatus] = useState<
+    { id: number; status: boolean }[]
+  >([]);
 
   const handleToggleValue = (attributeId: number) => {
     const attributeStatusClone = JSON.parse(
       JSON.stringify(attributeValueStatus)
     );
-    const result = attributeStatusClone.find((item) => item.id === attributeId);
+    const result = attributeStatusClone.find(
+      (item: { id: number }) => item.id === attributeId
+    );
     result.status = !result.status;
     setAttributeValueStatus(attributeStatusClone);
   };
@@ -26,7 +30,7 @@ export default function AttributeFilter() {
   useEffect(() => {
     setAttributes(attributeData);
     setAttributeValueStatus(
-      attributeData.map((attribute) => {
+      attributeData.map((attribute: Attribute) => {
         return { id: attribute.id, status: true };
       })
     );
@@ -36,7 +40,8 @@ export default function AttributeFilter() {
     <div className="mb-5">
       {attributes.map((attribute: Attribute) => {
         const isShow = attributeValueStatus.find(
-          (item) => item.id === attribute.id && item.status
+          (item: { id: number; status: boolean }) =>
+            item.id === attribute.id && item.status
         );
 
         return (
@@ -60,7 +65,7 @@ export default function AttributeFilter() {
                   <CheckboxItem
                     value={item}
                     key={item.id}
-                    attribute={attribute.id}
+                    attribute={attribute.id.toString()}
                   />
                 ))}
             </div>
