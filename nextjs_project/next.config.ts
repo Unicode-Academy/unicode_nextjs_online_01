@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "cdnphoto.dantri.com.vn",
+        hostname: "encrypted-tbn0.gstatic.com",
       },
     ],
   },

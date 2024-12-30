@@ -17,7 +17,7 @@ export default function PageTitle({ pageName }: { pageName: string }) {
       className="py-20"
     >
       <div className="container text-center ">
-        <h1 className="text-white text-[4rem] font-[800]">Sản phẩm</h1>
+        <h1 className="text-white text-[4rem] font-[800]">{pageName}</h1>
         <Breadcrumb className="mt-10">
           <BreadcrumbList className="lg:text-[1.6rem] flex justify-center lg:text-white">
             <BreadcrumbItem>

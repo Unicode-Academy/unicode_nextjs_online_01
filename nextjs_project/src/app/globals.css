@@ -92,4 +92,8 @@
     box-shadow: none !important;
     outline: 0 !important;
   }
+  .description p,
+  .tab-content-description p {
+    @apply mb-5;
+  }
 }
