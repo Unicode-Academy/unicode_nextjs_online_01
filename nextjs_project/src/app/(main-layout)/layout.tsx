@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import Footer from "./_components/Footer/Footer";
 import Header from "./_components/Header/Header";
 
@@ -11,6 +12,7 @@ export default function MainLayout({
       <Header />
       <main>{children}</main>
       <Footer />
+      <Toaster />
     </>
   );
 }

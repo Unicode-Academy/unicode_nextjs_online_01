@@ -1,0 +1,14 @@
+{
+  "id": 5,
+  "name": "Sản phẩm 5",
+  "slug": "san-pham-5",
+  "price": "1.000đ / kg",
+  "category": {
+    "name": "Chuyên mục 4",
+    "slug": "chuyen-muc-4"
+  },
+  "star": 4,
+  "short_description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi est ab cumque? Sint, debitis doloribus ipsum voluptate dolores odit illo sapiente dignissimos provident quae repellendus, porro odio? Fugit, quam necessitatibus.",
+  "description": "<p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi est ab cumque? Sint, debitis doloribus ipsum voluptate dolores odit illo sapiente dignissimos provident quae repellendus, porro odio? Fugit, quam necessitatibus.</p><p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi est ab cumque? Sint, debitis doloribus ipsum voluptate dolores odit illo sapiente dignissimos provident quae repellendus, porro odio? Fugit, quam necessitatibus.</p>",
+  "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsPc6ApIJfGaMBJ3WW0AE2OYr3RY1IDHBuxQ&s"
+}
