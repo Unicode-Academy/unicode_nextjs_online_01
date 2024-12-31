@@ -45,3 +45,17 @@ Yêu cầu môi trường
 - Nginx
 - Apache
 - Candy
+
+## CI/CD
+
+Push code Git --> Build --> Test --> Deploy
+
+- Deploy Staging (Deploy lên server test)
+- Merge code --> Deploy production
+
+Các bước khi deploy
+
+- pull code
+- npm i
+- npm run build
+- pm2 restart
