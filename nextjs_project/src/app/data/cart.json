@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "name": "Sản phẩm 1",
+    "slug": "san-pham-1",
+    "price": 2.99,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsPc6ApIJfGaMBJ3WW0AE2OYr3RY1IDHBuxQ&s",
+    "quantity": 2,
+    "amount": 5.98,
+    "attributes": {
+      "Size": "M",
+      "Color": "Red"
+    }
+  },
+  {
+    "id": 2,
+    "name": "Sản phẩm 2",
+    "slug": "san-pham-2",
+    "price": 2.99,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsPc6ApIJfGaMBJ3WW0AE2OYr3RY1IDHBuxQ&s",
+    "quantity": 1,
+    "amount": 2.99,
+    "attributes": {
+      "Size": "L",
+      "Color": "Green"
+    }
+  },
+  {
+    "id": 3,
+    "name": "Sản phẩm 1",
+    "slug": "san-pham-1",
+    "price": 3.99,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsPc6ApIJfGaMBJ3WW0AE2OYr3RY1IDHBuxQ&s",
+    "quantity": 1,
+    "amount": 3.99,
+    "attributes": {
+      "Size": "XL",
+      "Color": "Pink"
+    }
+  }
+]

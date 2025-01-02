@@ -18,16 +18,19 @@ export default function Quantity({
   };
   const handleMinus = () => {
     setQuantity(quantity - 1);
+    if (typeof onChange === "function") {
+      onChange(quantity - 1);
+    }
   };
   const handlePlus = () => {
     setQuantity(quantity + 1);
+    if (typeof onChange === "function") {
+      onChange(quantity + 1);
+    }
   };
   useLayoutEffect(() => {
     if (quantity < 1) {
       setQuantity(1);
-    }
-    if (typeof onChange === "function") {
-      onChange(quantity);
     }
   }, [quantity]);
   return (

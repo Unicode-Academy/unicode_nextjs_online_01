@@ -72,6 +72,12 @@ export default function ProductInfo({
   };
 
   useEffect(() => {
+    const cartData = localStorage.getItem("cart");
+    if (cartData) {
+      setCartData(JSON.parse(cartData));
+    }
+  }, []);
+  useEffect(() => {
     if (cartData.length) {
       localStorage.setItem("cart", JSON.stringify(cartData));
     }

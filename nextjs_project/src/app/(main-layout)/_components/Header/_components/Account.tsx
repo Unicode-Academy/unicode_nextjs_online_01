@@ -2,6 +2,7 @@
 import { Search, ShoppingBag, UserRound } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import Link from "next/link";
 
 export default function Account() {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
@@ -17,7 +18,9 @@ export default function Account() {
         >
           <Search size={18} className="text-primaryColor font-bold" />
         </span>
-        <ShoppingBag size={30} className="text-primaryColor cursor-pointer" />
+        <Link href="/cart">
+          <ShoppingBag size={30} className="text-primaryColor cursor-pointer" />
+        </Link>
         <UserRound size={30} className="text-primaryColor cursor-pointer" />
       </div>
       {searchOpen && (
