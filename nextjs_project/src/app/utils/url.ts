@@ -10,3 +10,11 @@ export const getPageUrl = (slug: string) => {
 export const getCategoryUrl = (slug: string) => {
   return `/shop/${slug}`;
 };
+
+export const getCartUrl = () => {
+  return `/cart`;
+};
+
+export const getCheckoutUrl = () => {
+  return `/checkout`;
+};

@@ -14,6 +14,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import cartDataFromAPI from "@/app/data/cart.json";
 import { cloneDeep } from "@/app/utils/utils";
+import { getCheckoutUrl } from "@/app/utils/url";
+import { useRouter } from "next/navigation";
 type CartItem = {
   id: number;
   name: string;
@@ -26,6 +28,7 @@ type CartItem = {
 };
 export default function Cart() {
   const [cartData, setCartData] = useState<CartItem[]>([] as CartItem[]);
+  const router = useRouter();
   useEffect(() => {
     if (localStorage.getItem("cart")) {
       const cartData = JSON.parse(localStorage.getItem("cart") as string);
@@ -135,6 +138,7 @@ export default function Cart() {
               size={null}
               className="px-20 py-8 md:text-[2rem] rounded-[999px] text-primaryColor  font-[600]"
               variant={"outline"}
+              onClick={() => router.push(getCheckoutUrl())}
             >
               Checkout
             </Button>
