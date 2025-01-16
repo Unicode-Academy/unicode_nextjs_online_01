@@ -12,13 +12,13 @@ export default function Checkout() {
   return (
     <div>
       <p className="mb-5">
-        Bạn chưa đăng nhập. Vui lòng{" "}
+        Bạn chưa đăng nhập. Vui lòng
         <span
           className="text-primaryColor font-[600] cursor-pointer"
           onClick={() => setShowModal(true)}
         >
           đăng nhập
-        </span>{" "}
+        </span>
         để thuận tiện khi mua hàng
       </p>
       <form className="flex gap-10">

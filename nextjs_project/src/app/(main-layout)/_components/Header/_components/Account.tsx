@@ -3,11 +3,20 @@ import { Search, ShoppingBag, UserRound } from "lucide-react";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
+import LoginModal from "../../LoginModal/LoginModal";
 
 export default function Account() {
   const [searchOpen, setSearchOpen] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState(false);
+  const isAuth = false;
   const handleToggleSearch = () => {
     setSearchOpen(!searchOpen);
+  };
+  const handleShowLoginModal = () => {
+    if (isAuth) {
+      return;
+    }
+    setShowModal(true);
   };
   return (
     <>
@@ -21,7 +30,10 @@ export default function Account() {
         <Link href="/cart">
           <ShoppingBag size={30} className="text-primaryColor cursor-pointer" />
         </Link>
-        <Link href={"/account/dashboard"}>
+        <Link
+          onClick={handleShowLoginModal}
+          href={isAuth ? "/account/dashboard" : "#"}
+        >
           <UserRound size={30} className="text-primaryColor cursor-pointer" />
         </Link>
       </div>
@@ -53,6 +65,14 @@ export default function Account() {
             </form>
           </div>
         </div>
+      )}
+      {!isAuth && (
+        <LoginModal
+          isShow={showModal}
+          onOpenChange={() => {
+            setShowModal(!showModal);
+          }}
+        />
       )}
     </>
   );
